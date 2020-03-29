@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+        <title>safe of city</title>
+        <script type="text/javascript" src="../src/jquery-3.4.1.js"></script>
+        <script src="../src/jquery.cookie.js"></script>
+        <script>
+            console.log($.cookie("data").email)
+        </script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <script type="text/javascript">
+            $("#header").load("head.html")
+        </script>
+        
+        <div id="content" class="clearfix">
+            <ul id="nav_con">
+                <li>
+                    <button id="time">时间筛选</button>
+                    <div id="select_date">
+                        <span>起始日期：</span><input id="starting" type="date"/>
+                        <br/>
+                        <span>结束时间：</span><input id="ending" type="date"/>
+                        <br/>
+                    </div>
+                    <script>
+                        $(function(){
+                            var today = '2017-07-30'
+                            $('#starting').val(today)
+                            $('#ending').val(today)
+                        })
+                    </script>
+                </li>
+                <li>
+                    <button id="area">地区筛选</button>
+                    <dl class="checkBox" id="select_dis">
+                        <dt><input type="checkbox" id="checkAll">
+                            <label>全选</label>
+                            <a id="reverser" href="javascript:;">反选</a>
+                        </dt>
+                        <dd>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="1"/><label>和平区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="2"/><label>河东区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="3"/><label>河西区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="4"/><label>南开区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="5"/><label>河北区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="6"/><label>红桥区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="7"/><label>东丽区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="8"/><label>西青区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="9"/><label>津南区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="10"/><label>北辰区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="11"/><label>武清区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="12"/><label>宝坻区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="13"/><label>滨海新区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="14"/><label>宁河区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="15"/><label>静海区</label></p>
+                            <p><input class="dis_se" type="checkbox" name="distinct" value="16"/><label>蓟州区</label></p>
+                        </dd>
+                    </dl>
+                    <script type="text/javascript">
+                        var oInput = document.getElementsByClassName("dis_se")
+                        var checkAll = document.getElementById("checkAll")
+                        for (var i = 0; i < oInput.length; i++) {
+                            oInput[i].onclick = function () {
+                                checkAll.checked = true
+                                for (var j = 0; j < oInput.length; j++) {
+                                    if (!oInput[j].checked) {
+                                        checkAll.checked = false
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        $("#checkAll").click(function () {
+                            for (var i = 0; i < oInput.length; i++) {
+                                oInput[i].checked = this.checked
+                            }
+                        })
+                        $("#reverser").click(function () {
+                            for (var i = 0; i < oInput.length; i++) {
+                                oInput[i].checked = !oInput[i].checked
+                            }
+                            checkAll.checked = true
+                            for (var j = 0; j < oInput.length; j++) {
+                                if (!oInput[j].checked) {
+                                    checkAll.checked = false
+                                    break
+                                }
+                            }
+                        })
+                    </script>
+                </li>
+                <li>
+                    <button id="type">类型筛选</button>
+                    <dl class="checkBox" id="select_type">
+                        <dt><input type="checkbox" id="checkAll1">
+                            <label>全选</label>
+                            <a id="reverser1" href="javascript:;">反选</a>
+                        </dt>
+                        <dd>
+                            <p><input class="type_se" type="checkbox" name="type" value="1"/><label>行政</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="2"/><label>民事</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="3"/><label>事故</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="4"/><label>刑事案件</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="5"/><label>重大刑事案件</label></p>
+                        </dd>
+                    </dl>
+                    <script type="text/javascript">
+                        var oInput1 = document.getElementsByClassName("type_se")
+                        var checkAll1 = document.getElementById("checkAll1")
+                        for (var i = 0; i < oInput1.length; i++) {
+                            oInput1[i].onclick = function () {
+                                checkAll1.checked = true
+                                for (var j = 0; j < oInput1.length; j++) {
+                                    if (!oInput1[j].checked) {
+                                        checkAll1.checked = false
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        $("#checkAll1").click(function () {
+                            for (var i = 0; i < oInput1.length; i++) {
+                                oInput1[i].checked = this.checked
+                            }
+                        })
+                        $("#reverser1").click(function () {
+                            for (var i = 0; i < oInput1.length; i++) {
+                                oInput1[i].checked = !oInput1[i].checked
+                            }
+                            checkAll1.checked = true
+                            for (var j = 0; j < oInput1.length; j++) {
+                                if (!oInput1[j].checked) {
+                                    checkAll1.checked = false
+                                    break
+                                }
+                            }
+                        })
+                    </script>
+                </li>
+                <script type="text/javascript">
+                    var select_dis = document.getElementById("select_dis");
+                    var select_type = document.getElementById("select_type");
+                    var select_date = document.getElementById("select_date");
+                    var height = getComputedStyle(select_date).height;
+                    $("#time").click(function () {
+                        select_date.style.height = 70 + "px";
+                        select_dis.style.display = "none"
+                        select_type.style.display = "none"
+                    })
+                    $("#area").click(function () {
+                        select_dis.style.display = "block"
+                        select_date.style.height = 0 + "px"
+                        select_type.style.display = "none"
+                    })
+                    $("#type").click(function () {
+                        select_type.style.display = "block"
+                        select_date.style.height = 0 + "px"
+                        select_dis.style.display = "none"
+                    })
+                </script>
+                <li>
+                    <input type="radio" name="map_type" value="1" checked = checked/>热力图
+                    <input type="radio" name="map_type" value="2"/>点注图
+                </li>
+                <button id="confirm">确&nbsp定</button>
+                <script>
+                    $("#confirm").click(function () {
+                        // var test = [39.126626,117.261693,'纠纷 速到 现场']
+                        // $("#iframe")[0].contentWindow.point(test[0],test[1],test[2])
+                        var start_date = $("#starting").val()
+                        var end_date = $("#ending").val()
+                        var dis_selected = [];
+                        $("input[name='distinct']:checked").each(function(i){
+                            dis_selected.push($(this).val())
+                        })
+                        var type_selected = [];
+                        $("input[name='type']:checked").each(function(i){
+                            type_selected.push($(this).val())
+                        })
+                        var map_type = $("input[name='map_type']:checked").val();
+                        if ( start_date == "" ){
+                            alert("请输入查询的起始日期")
+                        } else if ( end_date == "" ){
+                            alert("请输入查询的结束日期")
+                        } else if ( dis_selected.length == 0 ){
+                            alert("请选择需要查询的区域")
+                        } else if ( type_selected.length == 0 ){
+                            alert("请选择需要查询的类型")
+                        }else {
+                            var data = {start_date: start_date, end_date: end_date, dis_selected: dis_selected,
+                                        type_selected: type_selected, map_type: map_type}
+                            alert( JSON.stringify(data) )
+                            $.post({
+                                url: "http://localhost:8080/userInfo/selectById",
+                                data: {
+                                    data: JSON.stringify(data)
+                                },
+                                success: function (data) {
+
+                                },
+                                error: function (data) {
+                                    alert("网络错误请重试")
+                                }
+                            })
+                        }
+                    })
+                </script>
+            </ul>
+            <div id="map">
+                <iframe id="iframe" width="100%" height="100%" src="indexGaoDeMy.html"></iframe>
+            </div>
+        </div>
+        <div id="pageFooter">
+            Copyright©2019 Deluxe 3017216029@tju.edu.cn
+        </div>
+    </body>
+</html>

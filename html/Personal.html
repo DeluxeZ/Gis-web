@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Personal</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="renderer" content="webkit">
+        <meta property="qc:admins" content="77103107776157736375"/>
+        <meta property="wb:webmaster" content="c4f857219bfae3cb"/>
+        <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+        <meta http-equiv="Cache-Control" content="no-transform "/>
+        <script src="../src/jquery-3.4.1.js"></script>
+        <script src="../src/jquery.cookie.js"></script>
+        
+        <link rel="stylesheet" href="../css/base.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/common-less(1).css" type="text/css"/>
+        <link rel="stylesheet" href="../css/moco.min.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/common-less.css" type="text/css"/>
+        <link rel="stylesheet" href="../css/profile-less.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="header"></div>
+        <script>
+            $("#header").load("head.html")
+        </script>
+        <div class="bindHintBox js-bindHintBox hide">
+            <div class="pr">
+                为了账号安全，请及时绑定邮箱和手机<a href="/user/setbindsns" class="ml20 color-red" target="_blank">立即绑定</a>
+                <button class="closeBindHint js-closeBindHint" type="button"></button>
+                <div class="arrow"></div>
+            </div>
+        </div>
+        
+        
+        <div id="main">
+            <div class="page-settings">
+                <div class="top">
+                    <div class="w960 mauto top_title">
+                        <p>个人设置</p>
+                    </div>
+                </div>
+                <div class="setting pb10">
+                    <div class="nav-tabs pa">
+                        <h class="baseinfo fl active">基本信息</h>
+                        <a href="http://www.baidu.com" class="countinfo fl">我的案件</a>
+                        <a href="http://www.baidu.com" class="countinfo fl">修改密码</a>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="contentBox">
+                        <div class="formBox" id="base_info">
+                            <div id="setting-profile" class="setting-wrap setting-profile">
+                                <div class="wlfg-wrap clearfix ">
+                                    <label class="label-name">图片：</label>
+                                    <div class="rlf-group">
+                                        <img class="fl avator-img" id="js-portrait"
+                                             src="../lib/images/police.png"
+                                             data-portrait="58492fe600012e8e01800180" width="180" height="180">
+                                        <div class="cb"></div>
+                                        <p class="rlf-tip-wrap errorHint color-red"></p>
+                                    </div>
+                                </div>
+                                <form id="profile">
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name" for="name">姓名：</label>
+                                        <div class="rlf-group">
+                                            <input type="text" name="name" id="name" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="Sequin_YF" placeholder="请输入昵称"/>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#name").val($.cookie("name"))
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name" for="Pid">警员编号：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="pid" id="Pid" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="000000" readonly="true"/>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#Pid").val($.cookie("pid"))
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name" for="area">地区：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="area" id="area" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="天津市和平区" placeholder="请输入所在地区"/>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            var area;
+                                            switch ($.cookie("did")) {
+                                                case 1:
+                                                    area = "和平区";
+                                                    break;
+                                                case 2:
+                                                    area = "河东区";
+                                                    break;
+                                                case 3:
+                                                    area = "河西区";
+                                                    break;
+                                                case 4:
+                                                    area = "南开区";
+                                                    break;
+                                                case 5:
+                                                    area = "河北区";
+                                                    break;
+                                                case 6:
+                                                    area = "红桥区";
+                                                    break;
+                                                case 7:
+                                                    area = "东丽区";
+                                                    break;
+                                                case 8:
+                                                    area = "西青区";
+                                                    break;
+                                                case 9:
+                                                    area = "津南区";
+                                                    break;
+                                                case 10:
+                                                    area = "北辰区";
+                                                    break;
+                                                case 11:
+                                                    area = "武清区";
+                                                    break;
+                                                case 12:
+                                                    area = "宝坻区";
+                                                    break;
+                                                case 13:
+                                                    area = "滨海新区";
+                                                    break;
+                                                case 14:
+                                                    area = "宁河区";
+                                                    break;
+                                                case 15:
+                                                    area = "静海区";
+                                                    break;
+                                                default :
+                                                    area = "蓟州区";
+                                            }
+                                            $("#area").val(area)
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name h16 lh16">性别：</label>
+                                        <div class="rlf-group rlf-radio-group">
+                                            <label class="lh16"><input type="radio" hidefocus="true" value="1"
+                                                                       name="sex">男</label>
+                                            <label class="lh16"><input type="radio" hidefocus="true" value="0"
+                                                                       name="sex">女</label>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("input[type=radio][name='sex'][value="+$.cookie("gender")+"]").attr("checked",true);
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name">邮箱：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="email" id="email" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="000@126.com" placeholder="请输入邮箱"/>
+                                            <div class="cb"></div>
+                                            <span id="msg" style="font-size: 12px; color: red; visibility: hidden">请输入正确的邮箱</span>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#email").val($.cookie("email"))
+                                        </script>
+                                    </div>
+                                    <script>
+                                        $("#email").keyup(function () {
+                                            var id = $("#email").val()
+                                            var rsg = new RegExp(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/);
+                                            var s = document.getElementById("msg");
+                                            if (!rsg.test(id) && id != "") {
+                                                s.style.visibility = "visible";
+                                            } else {
+                                                s.style.visibility = "hidden";
+                                            }
+                                        })
+                                    </script>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name">电话：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="phone" id="phone" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="00000000000" placeholder="请输入手机号码"/>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#phone").val($.cookie("phone"))
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name">科室：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="class" id="class" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="刑侦科" readonly="true"/>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#class").val($.cookie("type"))
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name">职位：</label>
+                                        <div class="rlf-group profile-address">
+                                            <input type="text" name="status" id="status" autocomplete="off"
+                                                   data-validate="require-nick" class="moco-form-control"
+                                                   value="交警" readonly="readonly"/>
+                                            <div class="cb"></div>
+                                            <p class="rlf-tip-wrap errorHint color-red"></p>
+                                        </div>
+                                        <script>
+                                            $("#status").val($.cookie("status"))
+                                        </script>
+                                    </div>
+                                    <div class="wlfg-wrap clearfix">
+                                        <label class="label-name" for="profile-submit"></label>
+                                        <div class="rlf-group">
+                                            <span id="profile-submit" hidefocus="true" aria-role="button"
+                                                  class="rlf-btn-green btn-block profile-btn">保存</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="formBox" id="change_password">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pageFooter">
+            Copyright©2019 Deluxe 3017216029@tju.edu.cn
+        </div>
+        
+        <script src="../ssologin.js?v=2.0"></script>
+        <script type="text/javascript" src="../sea.js"></script>
+        <script type="text/javascript" src="../sea_config.js?v=201612141100"></script>
+        <script type="text/javascript">seajs.use("../" + OP_CONFIG.module + "/" + OP_CONFIG.page);</script>
+        
+        <div style="display: none">
+            <script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
+                (function (d) {
+                    window.bd_cpro_rtid = "rHT4P1c";
+                    var s = d.createElement("script");
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
+                    var s0 = d.getElementsByTagName("script")[0];
+                    s0.parentNode.insertBefore(s, s0);
+                })(document);
+            </script>
+            <script>
+                (function () {
+                    var bp = document.createElement('script');
+                    bp.src = '//push.zhanzhang.baidu.com/push.js';
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </body>
+</html>

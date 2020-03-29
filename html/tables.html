@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>接警数据详情</title>
+        <script type="text/javascript" src="../src/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/tables.css"/>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function openDialog() {
+                document.getElementById('light').style.display = 'block'
+                document.getElementById('fade').style.display = 'block'
+            }
+
+            function closeDialog() {
+                document.getElementById('light').style.display = 'none';
+                document.getElementById('fade').style.display = 'none'
+            }
+        </script>
+        <div id="header"></div>
+        <script type="text/javascript">
+            $("#header").load("head.html")
+        </script>
+        
+        <div id="content" class="clearfix">
+            <div id="select">
+                <p>数据筛选：</p>
+                <div id="select_date">
+                    <span>起始日期：</span><input id="starting" type="date"/>
+                    <br/>
+                    <span>结束时间：</span><input id="ending" type="date"/>
+                    <br/>
+                    <script>
+                        $(function(){
+                            var today = '2017-07-30'
+                            $('#starting').val(today)
+                            $('#ending').val(today)
+                        })
+                    </script>
+                </div>
+                <div id="select_area">
+                    <span>选择区域：</span>
+                    <select id="dis_select">
+                        <option value="1">和平区</option>
+                        <option value="2">河东区</option>
+                        <option value="3">河西区</option>
+                        <option value="4">南开区</option>
+                        <option value="5">河北区</option>
+                        <option value="6">红桥区</option>
+                        <option value="7">东丽区</option>
+                        <option value="8">西青区</option>
+                        <option value="9">津南区</option>
+                        <option value="10">北辰区</option>
+                        <option value="11">武清区</option>
+                        <option value="12">宝坻区</option>
+                        <option value="13">滨海新区</option>
+                        <option value="14">宁河区</option>
+                        <option value="15">静海区</option>
+                        <option value="16">蓟州区</option>
+                        <option value="0" selected="selected">所有区域</option>
+                    </select>
+                    <dl class="checkBox" id="select_type">
+                        <dt><input type="checkbox" id="checkAll1">
+                            <label>全选</label>
+                            <a id="reverser1" href="javascript:;">反选</a>
+                        </dt>
+                        <dd>
+                            <p><input class="type_se" type="checkbox" name="type" value="1"/><label>交通事故</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="2"/><label>民事案件</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="3"/><label>刑事案件</label></p>
+                            <p><input class="type_se" type="checkbox" name="type" value="4"/><label>重大刑事案件</label></p>
+                        </dd>
+                    </dl>
+                </div>
+                <script type="text/javascript">
+                    var oInput1 = document.getElementsByClassName("type_se")
+                    var checkAll1 = document.getElementById("checkAll1")
+                    for (var i = 0; i < oInput1.length; i++) {
+                        oInput1[i].onclick = function () {
+                            checkAll1.checked = true
+                            for (var j = 0; j < oInput1.length; j++) {
+                                if (!oInput1[j].checked) {
+                                    checkAll1.checked = false
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    $("#checkAll1").click(function () {
+                        for (var i = 0; i < oInput1.length; i++) {
+                            oInput1[i].checked = this.checked
+                        }
+                    })
+                    $("#reverser1").click(function () {
+                        for (var i = 0; i < oInput1.length; i++) {
+                            oInput1[i].checked = !oInput1[i].checked
+                        }
+                        checkAll1.checked = true
+                        for (var j = 0; j < oInput1.length; j++) {
+                            if (!oInput1[j].checked) {
+                                checkAll1.checked = false
+                                break
+                            }
+                        }
+                    })
+                </script>
+                <button class="confirm">确定</button>
+                <hr style="height:1px;border-top: 1px ridge black; margin-top: 10px"/>
+                <div id="select_num">
+                    <span>案件编号：</span><input type="text" id="input_number"/>
+                    <br/>
+                    <button class="confirm">确定</button>
+                </div>
+            </div>
+            <div id="display" class="clearfix">
+                <div id="nav_display" class="clearfix">
+                    <h3 id="nav_num">编号</h3>
+                    <h3 id="nav_lat_long">经纬度</h3>
+                    <h3 id="nav_address">地址</h3>
+                    <h3 id="nav_details">详情</h3>
+                    <h3 id="nav_op">操作</h3>
+                </div>
+                <div id="template" class="clearfix line-1">
+                    <div class="dis_num">
+                        <span class="number">00000000000</span>
+                    </div>
+                    <div class="dis_lat_lng">
+                        <span class="latitude" contenteditable="false">39.1439299033</span>
+                        <br/>
+                        <span class="longitude" contenteditable="false">117.210813092</span>
+                    </div>
+                    <div class="dis_address">
+                        <p class="address" contenteditable="false">天津市和平区</p>
+                    </div>
+                    <div class="dis_details">
+                        <p class="details" contenteditable="false">纠纷 速到 现场</p>
+                    </div>
+                    <div class="dis_but">
+                        <button class="dis_map" onclick="openDialog()">显示地图</button>
+                        <button class="alter">修改</button>
+                        <button class="delete">删除</button>
+                    </div>
+                    <div class="alter_con">
+                        <button class="confirm_alter">确定修改</button>
+                        <button class="cancel_alter">取消修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="light" class="white_content">
+            <iframe id="iframe" width="100%" height="99%" src="indexGaoDeMy.html"></iframe>
+        </div>
+        <div id="fade" class="black_overlay"></div>
+        <div id="pageFooter">
+            Copyright©2019 Deluxe 3017216029@tju.edu.cn
+        </div>
+        <script type="text/javascript">
+            var confirm1 = $(".confirm")[0]
+            confirm1.onclick = function() {
+                var start_date = $("#starting").val()
+                var end_date = $("#ending").val()
+                var dis_selected = []
+                dis_selected.push($("#dis_select option:selected").val())
+                var type_selected = [];
+                $("input[name='type']:checked").each(function(i){
+                    type_selected.push($(this).val())
+                })
+                if ( start_date == "" ){
+                    alert("请输入查询的起始日期")
+                } else if ( end_date == "" ){
+                    alert("请输入查询的结束日期")
+                } else if ( dis_selected.length == 0 ){
+                    alert("请选择需要查询的区域")
+                } else if ( type_selected.length == 0 ){
+                    alert("请选择需要查询的类型")
+                }else {
+                    var data = {
+                        start_date: start_date, end_date: end_date, dis_selected: dis_selected,
+                        type_selected: type_selected
+                    }
+                    alert(JSON.stringify(data))
+                }
+            }
+            
+            var alter_function = function (id) {
+                var lat = $("#" + id + " .latitude")[0]
+                var lon = $("#" + id + " .longitude")[0]
+                var alter_con = $("#" + id + " .alter_con")[0]
+                var dis_but = $("#" + id + " .dis_but")[0]
+                var details = $("#" + id + " .details")[0]
+                var address = $("#" + id + " .address")[0]
+                var latitude, longitude, add, det;
+
+                lat.contentEditable = true
+                lon.contentEditable = true
+                details.contentEditable = true
+                address.contentEditable = true
+                latitude = lat.innerText
+                longitude = lon.innerText
+                add = address.innerText
+                det = details.innerText
+                dis_but.style.width = 0 + "px"
+                alter_con.style.width = 166 + "px"
+
+                var cancel = $("#" + id + " .cancel_alter")[0]
+                cancel.onclick = function () {
+                    lat.innerText = latitude
+                    lon.innerText = longitude
+                    address.innerText = add
+                    details.innerText = det
+                    lat.contentEditable = false
+                    lon.contentEditable = false
+                    details.contentEditable = false
+                    address.contentEditable = false
+                    dis_but.style.width = 166 + "px"
+                    alter_con.style.width = 0 + "px"
+                }
+
+                var confirm_alter = $("#" + id + " .confirm_alter")[0]
+                confirm_alter.onclick = function () {
+                    var pid = this.parentNode.parentNode.id
+                    var id = $("#" + pid + " .number").innerText
+                    alert(id)
+                }
+            }
+            
+            var display_map = function (id) {
+                var lat = $("#" + id + " .latitude")[0].innerText
+                var lng = $("#" + id + " .longitude")[0].innerText
+                var details = $("#" + id + " .details")[0].innerText
+                openDialog()
+                $("#iframe")[0].contentWindow.point1(lat,lng,details)
+                $("#fade").click(function () {
+                    closeDialog()
+                })
+            }
+
+            var button = $("#template .alter")[0]
+            button.onclick = function () {
+                var id = this.parentNode.parentNode.id
+                alter_function(id)
+            }
+            
+            var dis_map = $("#template .dis_map")[0]
+            dis_map.onclick = function () {
+                var id = this.parentNode.parentNode.id
+                display_map(id)
+            }
+        
+            var copy = function (num) {
+                var div = $("#template");
+                var divClone = div.clone();
+                divClone.attr("id", "line-" + num);
+                $("#display").append(divClone);
+                $("#display #line-" + num).css('display','block')
+                var button = $("#line-"+ num +" .alter")[0]
+                button.onclick = function () {
+                    var id = this.parentNode.parentNode.id
+                    alter_function(id)
+                }
+                var dis_map = $("#line-"+ num +" .dis_map")[0]
+                dis_map.onclick = function () {
+                    var id = this.parentNode.parentNode.id
+                    display_map(id)
+                }
+            }
+            copy(1)
+            copy(2)
+            copy(3)
+            copy(4)
+        </script>
+    </body>
+</html>

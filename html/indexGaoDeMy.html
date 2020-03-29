@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>离线地图</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../css/leaflet.css">
+        <style type="text/css">
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            
+            html, body, #map {
+                height: 100%;
+            }
+        </style>
+        <script type="text/javascript" src="../src/leaflet.js"></script>
+        <script type="text/javascript" src='../src/mi_leaflet.ChineseTmsProviders.js'></script>
+        <script type="text/javascript" src='../src/jquery-3.4.1.js'></script>
+        <script type="text/javascript" src="../src/leaflet-heat.js"></script>
+        <script type="text/javascript" src="../src/leaflet-heatmap.js"></script>
+    </head>
+    
+    <body>
+        <div id='map'></div>
+    </body>
+    
+    <script type="text/javascript">
+        var normalm = L.tileLayer.chinaProvider('GaoDe.Normal.Map', {
+            maxZoom: 16,
+            minZoom: 9
+        });
+
+        var normal = L.layerGroup([normalm]);
+
+        var baseLayers = {
+            "地图": normal,
+        }
+
+        var map = L.map("map", {
+            center: [39.1439299033, 117.210813092],
+            zoom: 11,
+            layers: [normal],
+            zoomControl: true
+        });
+        
+        var ic_blue = L.icon({
+            iconUrl: "../lib/images/marker-icon.png",
+            shadowUrl: "../lib/images/marker-shadow.png",
+        });
+
+        var point = function (lat,lng,details) {
+            L.marker([lat, lng], {icon: ic_blue}).addTo(map).bindPopup(details)
+        }
+        var point1 = function (lat,lng,details) {
+            L.marker([lat, lng], {icon: ic_blue}).addTo(map).bindPopup(details).openPopup()
+        }
+        
+        // var data = [[39.7234447032941, 117.261693165271, 100],
+        //     [39.1828955981796, 117.252029144961, 110],
+        //     [39.0900723258804, 117.134346848118, 240]]
+        
+        var heat = function (data) {
+            L.heatLayer(data).addTo(map)
+        }
+        
+        // heat(data)
+        
+    </script>
+</html>

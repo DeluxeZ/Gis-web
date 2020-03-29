@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" type="text/css" href="../css/login.css"/>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>登陆</title>
+        <script src="../src/jquery-3.4.1.js"></script>
+        <script src="../src/jquery.cookie.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#id_input").keyup(function(){
+                    var id = $("#id_input").val()
+                    var rsg = new RegExp(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/);
+                    var s = document.getElementById("msg");
+                    if ( !rsg.test(id) && id != "" ){
+                        s.style.visibility = "visible";
+                    }else{
+                        s.style.visibility = "hidden";
+                    }
+                })
+
+                $("#confirm").click(function () {
+                    $.post({
+                        url: "http://localhost:8080/policeInfo/selectByEmail",
+                        data: {
+                            email: $("#email_input").val(),
+                            password: $("#password_input").val()
+                        },
+                        success: function (data) {
+                            if ( data.msg == "error" ){
+                                alert("该用户不存在")
+                            } else if (data.data.password != $("#password_input").val()){
+                                alert("密码错误请重试！！")
+                            } else {
+                                $.cookie("name",data.data.name)
+                                $.cookie("email",data.data.email)
+                                $.cookie("phone",data.data.phone)
+                                $.cookie("did",data.data.did)
+                                $.cookie("gender",data.data.gender)
+                                $.cookie("password",data.data.password)
+                                $.cookie("status",data.data.status)
+                                $.cookie("type",data.data.type)
+                                $.cookie("pid",data.data.pid)
+                                alert("欢迎您，" + data.data.name)
+                                window.location.href = "index.html"
+                            }
+                        },
+                        error:function (data) {
+                            alert("网络错误请重试！！！")
+                        }
+                    })
+                    return false
+                })
+
+                document.onkeypress = function (event) {
+                    if ( event.which == 13 ){
+                        $("#confirm").click();
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="header">
+            <h3 id="title">天津市接警查询</h3>
+            <h4 id="titlePin">tianjinshijiejingchaxun</h4>
+        </div>
+        <form id="input" method="post">
+            <p>用户登录</p>
+            <input type="text" id="email_input" autocomplete="off" placeholder="请输入邮箱账号"/>
+            <span id="msg" style="font-size: 14px; color: red; visibility: hidden" >请输入正确的用户名</span>
+            <input type="password" id="password_input" autocomplete="new-password" placeholder="请输入密码"/>
+            <a href="#">忘记密码?</a>
+            <button id="confirm">确&nbsp认</button>
+        </form>
+        <div id="pageFooter">
+            Copyright©2019 Deluxe 3017216029@tju.edu.cn
+        </div>
+    </body>
+</html>

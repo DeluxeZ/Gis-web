@@ -1,0 +1,342 @@
+* {
+     margin: 0;
+     padding: 0;
+     border: none;
+}
+
+html {
+     background-color: #fff;
+}
+
+body {
+     width: 1423px;
+}
+
+button:hover{
+     cursor: pointer;
+}
+
+#content {
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+#select {
+     float: left;
+     width: 240px;
+     height: 300px;
+     padding-top: 10px;
+     margin-left: 20px;
+     margin-right: 10px;
+}
+
+#select p {
+     font-family: "Adobe 黑体 std";
+     font-size: 20px;
+     line-height: 25px;
+}
+
+#select span {
+     font-size: 13px;
+     font-weight: normal;
+}
+
+#select input {
+     border-radius: 5px;
+     border: 1px solid rgb(220, 220, 220);
+     background-color: #f4f4f4;
+     margin: 15px 0 3px 0;
+     outline: none;
+}
+
+#select_area select {
+     margin-top: 15px;
+     width: 125px;
+     border-radius: 3px;
+     background-color: rgb(230, 230, 230);
+     height: 30px;
+     outline: none;
+     text-indent: 2em;
+     background-image: url("../lib/images/location.png");
+     background-repeat: no-repeat;
+     background-position: 7px center;
+}
+
+.confirm {
+     margin-top: 20px;
+     width: 100px;
+     margin-left: 95px;
+     height: 30px;
+     background-color: #3399ff;
+     font-size: 15px;
+     border-radius: 5px;
+     color: white;
+     outline: none;
+}
+
+.confirm:hover {
+     background-color: #3388ff;
+     cursor: pointer;
+}
+
+#input_number {
+     width: 150px;
+     height: 30px;
+     outline: none;
+     text-indent: 1em;
+}
+
+#display {
+     float: left;
+     width: 1150px;
+     height: 655px;
+     border: 1px solid rgb(220, 220, 220);
+     overflow: auto;
+     padding-bottom: 5px;
+}
+
+#nav_display {
+     width: 1110px;
+     background-color: rgb(105, 175, 206);
+     color: white;
+     margin: 10px 10px 0 10px;
+     border-top-right-radius: 5px;
+     border-top-left-radius: 5px;
+}
+
+#nav_display h3 {
+     float: left;
+     text-align: center;
+     line-height: 30px;
+}
+
+#nav_display #nav_num {
+     width: 111px;
+     border-right: 1px solid white;
+}
+
+#nav_display #nav_lat_long {
+     width: 150px;
+     border-right: 1px solid white;
+}
+
+#nav_display #nav_address {
+     width: 320px;
+     border-right: 1px solid white;
+}
+
+#nav_display #nav_details {
+     width: 360px;
+     border-right: 1px solid white;
+}
+
+#nav_display #nav_op {
+     width: 160px;
+}
+
+dl {
+     width: 180px;
+     margin: 10px auto;
+     border: 1px solid #666;
+     border-radius: 5px;
+     background: #fafafa;
+
+     padding: 10px 5px;
+     opacity: 0.9;
+}
+
+a {
+     text-decoration: none;
+     color: #09f;
+}
+
+a:hover {
+     color: red;
+}
+
+dt {
+     border-bottom: 1px solid black;
+     padding-bottom: 10px;
+}
+
+dt label {
+     font-weight: 700;
+}
+
+.line-1 {
+     width: 1110px;
+     border: 1px solid white;
+     background-color: rgb(240, 240, 240);
+     margin: 5px 10px 0 10px;
+     border-radius: 5px;
+}
+
+.line-1 > div {
+     float: left;
+}
+
+.line-1 p {
+     float: left;
+}
+
+.dis_num {
+     width: 110px;
+     border-right: 1px solid white;
+     height: 100px;
+     text-align: center;
+}
+
+.dis_num .number {
+     display: block;
+     line-height: 100px;
+}
+
+.dis_lat_lng {
+     width: 140px;
+     border-right: 1px solid white;
+     height: 90px;
+     text-align: right;
+     padding: 10px 10px 0 0;
+}
+
+#dis_lat_lng span {
+     width: 140px;
+}
+
+#dis_lat_lng .latitude {
+     display: inline-block;
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+.dis_address {
+     height: 100px;
+     width: 300px;
+     border-right: 1px solid white;
+     padding-left: 10px;
+     padding-right: 10px;
+     position: relative;
+     text-align: left;
+}
+
+.address {
+     position: absolute;
+     top: 50%;
+     transform: translate(0%, -50%);
+     width: 300px;
+}
+
+.dis_details {
+     height: 100px;
+     width: 340px;
+     border-right: 1px solid white;
+     padding-left: 10px;
+     padding-right: 10px;
+     position: relative;
+     text-align: left;
+}
+
+.details {
+     position: absolute;
+     top: 50%;
+     transform: translate(0%, -50%);
+     width: 340px;
+}
+
+.dis_but {
+     width: 166px;
+     text-align: center;
+     height: 100px;
+     overflow: hidden;
+     transition: 0.5s;
+}
+
+.dis_but button {
+     outline: none;
+     border-radius: 15px;
+     margin-top: 6px;
+     width: 130px;
+     height: 25px;
+     color: white;
+     text-align: center;
+}
+
+.dis_map {
+     background-color: rgb(26, 161, 95);
+}
+
+.alter {
+     background-color: rgb(255, 205, 55);
+     text-indent: 2em;
+     letter-spacing: 2em;
+}
+
+.delete {
+     background-color: rgb(221, 83, 71);
+     text-indent: 2em;
+     letter-spacing: 2em;
+}
+
+.alter_con {
+     position: relative;
+     top: 15px;
+     left: 20px;
+     width: 0px;
+     overflow: hidden;
+     transition: 0.5s;
+}
+
+.alter_con button {
+     outline: none;
+     border-radius: 15px;
+     margin-top: 6px;
+     width: 130px;
+     height: 25px;
+     color: white;
+     text-align: center;
+     background-color: #3399ff;
+}
+
+#pageFooter {
+     background-color: #444545;
+     color: white;
+     font-size: 12px;
+     height: 50px;
+     font-family: 微软雅黑;
+     line-height: 50px;
+     text-align: center;
+}
+
+.clearfix::after, .clearfix::before {
+     content: "";
+     display: block;
+     clear: both;
+}
+
+.black_overlay {
+     display: none;
+     position: absolute;
+     top: 0%;
+     left: 0%;
+     width: 100%;
+     height: 100%;
+     background-color: black;
+     z-index: 1001;
+     -moz-opacity: 0.8;
+     opacity: .80;
+     filter: alpha(opacity=88);
+}
+
+.white_content {
+     display: none;
+     position: absolute;
+     top: 15%;
+     left: 20%;
+     width: 60%;
+     height: 60%;
+     padding: 5px;
+     border: 1px solid orange;
+     background-color: white;
+     z-index: 1002;
+     overflow: auto;
+}
